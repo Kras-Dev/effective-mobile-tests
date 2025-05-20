@@ -11,14 +11,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     openjdk-17-jdk \
     unzip \
     wget \
-    && rm -rf /var/lib/apt/lists/* \  # очищаем кеш apt для уменьшения размера образа
-    # Скачиваем Allure CLI нужной версии
+    && rm -rf /var/lib/apt/lists/* \
     && wget -qO allure.zip https://github.com/allure-framework/allure2/releases/download/2.21.0/allure-2.21.0.zip \
-    # Распаковываем Allure в /opt/
     && unzip allure.zip -d /opt/ \
-    # Создаём символическую ссылку для удобного вызова allure из любого места
     && ln -s /opt/allure-2.21.0/bin/allure /usr/bin/allure \
-    # Удаляем архив, чтобы не занимал место
     && rm allure.zip
 
 # Копируем файл зависимостей Python в контейнер
